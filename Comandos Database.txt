@@ -1,0 +1,49 @@
+CREATE DATABASE vacinacao;
+USE vacinacao;
+
+CREATE TABLE Vacinas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    doses INT NOT NULL,
+    periodicidade INT NOT NULL,
+    intervalo INT NOT NULL
+);
+
+CREATE TABLE Alergias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    sexo ENUM('Masculino', 'Feminino') NOT NULL,
+    uf CHAR(2) NOT NULL
+);
+
+CREATE TABLE Agendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    vacina_id INT NOT NULL,
+    data DATE NOT NULL,
+    situacao ENUM('Agendado', 'Cancelado', 'Realizado') NOT NULL,
+    data_situacao DATE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id),
+    FOREIGN KEY (vacina_id) REFERENCES Vacinas(id)
+);
+
+CREATE TABLE usuarios_alergias (
+    usuario_id INT NOT NULL,
+    alergia_id INT NOT NULL,
+    PRIMARY KEY (usuario_id, alergia_id),
+    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id),
+    FOREIGN KEY (alergia_id) REFERENCES Alergias(id)
+);
+
+ALTER TABLE Agendas
+MODIFY COLUMN data_situacao DATE;
+
+------- CASO NÃO RODAR -------
+
+alter user 'root'@'localhost' identified with mysql_native_password by 'SUA SENHA AQUI' 
+flush privileges;

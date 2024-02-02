@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Vacinas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn-danger,
+        .btn-secondary {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Listagem de Vacinas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Doses</th>
+                    <th>Periodicidade</th>
+                    <th>Intervalo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% vacinas.forEach(vacina => { %>
+                    <tr>
+                        <td><%= vacina.id %></td>
+                        <td><%= vacina.nome %></td>
+                        <td><%= vacina.doses %></td>
+                        <td><%= vacina.periodicidade %></td>
+                        <td><%= vacina.intervalo %></td>
+                        <td>
+                            <a href="/excluirVacina/<%= vacina.id %>" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>

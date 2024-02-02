@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: #fff;
+            padding-top: 20px;
+        }
+
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        #sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid #bbb;
+        }
+
+        #sidebar a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h1 class="text-center">Menu</h1>
+    <a href="/incluirVacina">Incluir Vacina</a>
+    <a href="/incluirAlergia">Incluir Alergia</a>
+    <a href="/incluirUsuario">Incluir Usuário</a>
+    <a href="/incluirAgenda">Incluir Agenda</a>
+    <a href="/listarVacinas">Listar Vacinas</a>
+    <a href="/listarAlergias">Listar Alergias</a>
+    <a href="/listarUsuarios">Listar Usuários</a>
+    <a href="/listarAgendas">Listar Agendas</a>
+</div>
+
+<div id="content">
+    <h1>Bem-vindo ao Menu Principal</h1>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Agendas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .btn-group {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .btn-danger, .btn-success {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+
+        .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-secondary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Listagem de Agendas</h1>
+        <div class="btn-group">
+            <a href="/listarAgendas/todas" class="btn btn-info">Todas</a>
+            <a href="/listarAgendas/canceladas" class="btn btn-danger ml-2">Canceladas</a>
+            <a href="/listarAgendas/realizadas" class="btn btn-success ml-2">Realizadas</a>
+            <a href="/listarAgendasDia" class="btn btn-info ml-2">Dia Corrente</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Usuário</th>
+                    <th>Vacina</th>
+                    <th>Data</th>
+                    <th>Situação</th>
+                    <th>Data da Situação</th>
+                    <th>Excluir</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% agendas.forEach(agenda => { %>
+                    <tr>
+                        <td><%= agenda.id %></td>
+                        <td><%= agenda.usuario_id %></td>
+                        <td><%= agenda.vacina_id %></td>
+                        <td><%= new Date(agenda.data).toLocaleDateString() %></td>
+                        <td><%= agenda.situacao %></td>
+                        <td><%= new Date(agenda.data_situacao).toLocaleDateString() %></td>
+                        <td>
+                            <a href="/excluirAgenda/<%= agenda.id %>" class="btn btn-danger">Excluir</a>
+                        </td>
+
+                        <td>
+                            <form action="/darBaixa/<%= agenda.id %>" method="post" style="display: flex; gap: 10px;">
+                                <button type="submit" name="acao" value="Realizado" class="btn btn-success"><i class="fa-solid fa-square-check"></i></button>
+                                <button type="submit" name="acao" value="Cancelado" class="btn btn-danger"><i class="fa-solid fa-rectangle-xmark"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>

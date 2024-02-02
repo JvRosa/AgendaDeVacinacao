@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Candidato</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Editar Candidato</h1>
+    <form action="/atualizar/<%= candidato.codigo %>" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" value="<%= candidato.nome %>" required>
+
+      <label for="sexo">Sexo:</label>
+      <input type="text" name="sexo" value="<%= candidato.sexo %>" required>
+
+      <label for="data_nasc">Data de Nascimento:</label>
+      <input type="date" name="data_nasc" value="<%= candidato.data_nasc.toISOString().split('T')[0] %>" required>
+
+      <label for="cargo_pretendido">Cargo Pretendido:</label>
+      <input type="text" name="cargo_pretendido" value="<%= candidato.cargo_pretendido %>" required>
+
+      <label for="texto_curriculo">Texto do Currículo:</label>
+      <textarea name="texto_curriculo" required><%= candidato.texto_curriculo %></textarea>
+
+      <button type="submit">Atualizar Candidato</button>
+    </form>
+  </div>
+</body>
+</html>
